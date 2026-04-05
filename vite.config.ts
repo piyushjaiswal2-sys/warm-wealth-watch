@@ -7,6 +7,9 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   // Base path for GitHub Pages deployment
   base: "/warm-wealth-watch/",
+  build: {
+    outDir: 'build', // This forces Vite to create a 'build' folder
+  },
   server: {
     host: "::",
     port: 8080,
