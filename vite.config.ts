@@ -5,11 +5,18 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // Base path for GitHub Pages deployment
-  base: "/warm-wealth-watch/",
+  // Use root base in development, GitHub Pages base in production build
+  base: mode === 'development' ? '/' : '/warm-wealth-watch/',
+  
   build: {
-    outDir: 'build', // This forces Vite to create a 'build' folder
+    // Standardizing to 'dist' is safer for most GitHub Action templates
+    outDir: 'dist',
+    // Ensures assets are handled correctly in sub-folders
+    assetsDir: 'assets',
+    // Generates a manifest file which can help with debugging
+    manifest: true,
   },
+
   server: {
     host: "::",
     port: 8080,
@@ -17,10 +24,12 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
+
   plugins: [
     react(),
     mode === "development" && componentTagger(),
   ].filter(Boolean),
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
