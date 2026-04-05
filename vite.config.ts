@@ -5,8 +5,8 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // Use root base in development, GitHub Pages base in production build
-  base: mode === 'development' ? '/' : '/warm-wealth-watch/',
+  // Use root base for all environments on Vercel
+  base: '/',
   
   build: {
     // Standardizing to 'dist' is safer for most GitHub Action templates
